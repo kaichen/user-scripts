@@ -4,11 +4,12 @@
 // @version      2025-06-25
 // @description  在 Twitter/X 搜索框下方添加日期筛选快捷按钮
 // @author       Kai(kai@thekaiway.com)
+// @license      MIT
 // @match        https://x.com/explore
 // @match        https://x.com/search*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=x.com
-// @updateURL  https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
-// @downloadURL https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
+// @updateURL    https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
+// @downloadURL  https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
 // @grant        none
 // ==/UserScript==
 
