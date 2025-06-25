@@ -7,6 +7,8 @@
 // @match        https://x.com/explore
 // @match        https://x.com/search*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=x.com
+// @updateURL  https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
+// @downloadURL https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
 // @grant        none
 // ==/UserScript==
 
