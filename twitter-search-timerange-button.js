@@ -5,8 +5,7 @@
 // @description  在 Twitter/X 搜索框下方添加日期筛选快捷按钮
 // @author       Kai(kai@thekaiway.com)
 // @license      MIT
-// @match        https://x.com/explore
-// @match        https://x.com/search*
+// @match        https://x.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=x.com
 // @updateURL    https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
 // @downloadURL  https://raw.githubusercontent.com/kaichen/user-scripts/main/twitter-search-timerange-button.js
@@ -19,8 +18,18 @@
     // 调试开关
     const DEBUG = false;
     const log = (...args) => DEBUG && console.log(...args);
-
-    log('[日期快捷按钮] 脚本已加载');
+    
+    // 检查是否是需要运行脚本的页面
+    function shouldRunScript(url) {
+        return url.includes('/explore') || url.includes('/search');
+    }
+    
+    function getCurrentPageType(url) {
+        if (url.includes('/explore')) return 'explore';
+        if (url.includes('/search')) return 'search';
+        if (url.includes('/home')) return 'home';
+        return 'other';
+    }
 
     // 获取格式化日期
     function getFormattedDate(daysAgo = 0) {
@@ -67,7 +76,6 @@
 
     // 创建快捷按钮容器
     function createShortcutButtons() {
-        log('[日期快捷按钮] 创建按钮容器');
 
         const container = document.createElement('div');
         container.style.cssText = `
@@ -119,12 +127,10 @@
 
                 const searchInput = document.querySelector('[data-testid="SearchBox_Search_Input"]');
                 if (!searchInput) {
-                    log('[日期快捷按钮] 未找到搜索输入框');
                     return;
                 }
 
                 const currentValue = searchInput.value.trim();
-                log(`[日期快捷按钮] 输入框当前值: "${currentValue}"`);
 
                 // 移除已有的 since: 和 until: 参数
                 let cleanedValue = currentValue.replace(/\s*since:\S+/g, '').replace(/\s*until:\S+/g, '').trim();
@@ -158,8 +164,6 @@
                 // 构建新 URL
                 const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
 
-                log(`[日期快捷按钮] 导航到: ${newUrl}`);
-
                 // 导航到新 URL
                 window.location.href = newUrl;
             };
@@ -175,35 +179,32 @@
         // 查找 dropdown
         const dropdown = document.querySelector('[id^="typeaheadDropdown"]');
         if (!dropdown) {
-            log('[日期快捷按钮] 未找到 dropdown');
             return;
         }
 
         // 检查是否已插入
         if (dropdown.querySelector('#date-shortcuts-container')) {
-            log('[日期快捷按钮] 快捷按钮已存在');
             return;
         }
-
-        log('[日期快捷按钮] 找到 dropdown，准备插入按钮');
 
         // 创建并插入按钮容器到顶部
         const shortcuts = createShortcutButtons();
         dropdown.prepend(shortcuts);
-
-        log('[日期快捷按钮] 按钮插入成功');
     }
 
     // 监听搜索框点击
     function setupSearchBoxListener() {
+        const currentUrl = window.location.href;
+        
+        if (!shouldRunScript(currentUrl)) {
+            return;
+        }
+        
         const searchInput = document.querySelector('[data-testid="SearchBox_Search_Input"]');
         if (!searchInput) {
-            log('[日期快捷按钮] 未找到搜索框，稍后重试');
             setTimeout(setupSearchBoxListener, 1000);
             return;
         }
-
-        log('[日期快捷按钮] 找到搜索框，添加监听器');
 
         // 移除旧的监听器（如果存在）
         searchInput.removeEventListener('click', handleSearchClick);
@@ -222,7 +223,6 @@
             mutations.forEach(mutation => {
                 mutation.addedNodes.forEach(node => {
                     if (node.nodeType === 1 && node.id && node.id.includes('typeaheadDropdown')) {
-                        log('[日期快捷按钮] 检测到 dropdown 创建');
                         setTimeout(insertShortcuts, 50);
                     }
                 });
@@ -237,7 +237,6 @@
 
     // 处理搜索框点击事件
     function handleSearchClick() {
-        log('[日期快捷按钮] 搜索框被点击');
         // 延迟执行以等待 dropdown 创建
         setTimeout(insertShortcuts, 100);
     }
@@ -245,8 +244,6 @@
     // 处理搜索框回车提交
     function handleSearchSubmit(e) {
         if (e.key === 'Enter') {
-            log('[日期快捷按钮] 检测到回车键');
-            
             const searchInput = e.target;
             const currentValue = searchInput.value.trim();
             
@@ -268,8 +265,6 @@
             // 构建新 URL
             const newUrl = `/search?${urlParams.toString()}`;
             
-            log(`[日期快捷按钮] 手动导航到: ${newUrl}`);
-            
             // 导航到新 URL
             window.location.href = newUrl;
         }
@@ -288,7 +283,6 @@
         const url = location.href;
         if (url !== lastUrl) {
             lastUrl = url;
-            log('[日期快捷按钮] 页面导航，重新初始化');
             setTimeout(setupSearchBoxListener, 500);
         }
     }).observe(document, { subtree: true, childList: true });
