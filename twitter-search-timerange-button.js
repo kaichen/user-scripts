@@ -158,11 +158,12 @@
                 }
 
                 // 更新 URL 参数
-                const urlParams = new URLSearchParams(window.location.search);
+                const urlParams = new URLSearchParams();
                 urlParams.set('q', newQuery.trim());
+                urlParams.set('src', 'typed_query');
 
-                // 构建新 URL
-                const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+                // 构建新 URL - 始终导航到搜索页面
+                const newUrl = `/search?${urlParams.toString()}`;
 
                 // 导航到新 URL
                 window.location.href = newUrl;
