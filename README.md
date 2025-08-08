@@ -15,6 +15,15 @@
 download👇 
 https://greasyfork.org/en/scripts/540701-twitter-x-%E6%90%9C%E7%B4%A2%E6%97%A5%E6%9C%9F%E5%BF%AB%E6%8D%B7%E6%8C%88%E9%92%AE
 
+### 移除 ChatGPT GPT-5 渐变背景
+
+移除 ChatGPT GPT-5 网页版本看着难受又没什么用的渐变背景。
+
+![screenshot-img](assets/tweet-search-btn.png)
+
+downlodownload👇ad
+https://greasyfork.org/en/scripts/545012-remove-chatgpt-gpt-5-background
+
 ### NPMJS Absolute Timestamp
 
 将 npmjs.com 上的相对时间戳（如 "2 days ago"）转换为绝对日期显示。
