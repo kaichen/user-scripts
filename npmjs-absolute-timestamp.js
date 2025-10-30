@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         NPMJS Absolute Timestamp
-// @namespace    http://tampermonkey.net/
+// @namespace    kai.scripts
 // @version      2025-07-02
 // @description  Cast <time> tag relative timestamp to absolution.
 // @author       Kai(kai@thekaiway.com)

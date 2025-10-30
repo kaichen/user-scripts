@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Twitter/X 搜索日期快捷按钮
-// @namespace    http://tampermonkey.net/
+// @namespace    kai.scripts
 // @version      2025-06-25
 // @description  在 Twitter/X 搜索框下方添加日期筛选快捷按钮
 // @author       Kai(kai@thekaiway.com)

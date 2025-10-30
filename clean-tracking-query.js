@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Clean Tracking Query
-// @namespace    http://tampermonkey.net/
+// @namespace    kai.scripts
 // @version      2025-07-08
 // @description  自动移除 URL 中的 utm_*、gclid、fbclid 等常见追踪参数
 // @author       Kai(kai@thekaiway.com)

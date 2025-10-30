@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Remove ChatGPT Background
-// @namespace    kai.tools
+// @namespace    kai.scripts
 // @version      0.1.1
 // @description  移除 ChatGPT 页面上的装饰性背景图（persistent.oaistatic.com/burrito-nux）
 // @match        https://chatgpt.com/*

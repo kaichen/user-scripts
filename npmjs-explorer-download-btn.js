@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         npmjs file downloader
-// @namespace    kai.chatgpt.demo
+// @namespace    kai.scripts
 // @version      0.2.0
 // @description  在 npmjs.com 的 Code 页目录树中，为每个文件名旁添加「下载」按钮
 // @author       Kai(kai@thekaiway.com)
